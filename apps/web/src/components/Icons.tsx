@@ -173,6 +173,19 @@ export const KiroIcon: Icon = (props) => (
   </svg>
 );
 
+export const NovaIcon: Icon = (props) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="5.5" fill="#C9C4EC" />
+    <circle cx="11" cy="8.5" r="5" fill="#2F6BF0" />
+    <circle cx="8.2" cy="14" r="5" fill="#E2384D" />
+    <circle cx="14.6" cy="14.4" r="5" fill="#8A4FE8" />
+    <path
+      d="M12 9.2L12.7 11.3L14.8 12L12.7 12.7L12 14.8L11.3 12.7L9.2 12L11.3 11.3Z"
+      fill="#FFF6C8"
+    />
+  </svg>
+);
+
 export const VisualStudioCode: Icon = (props) => {
   const id = useId();
   const maskId = `${id}-vscode-a`;

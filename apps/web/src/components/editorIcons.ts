@@ -9,6 +9,7 @@ import {
   FinderIcon,
   type Icon,
   KiroIcon,
+  NovaIcon,
   TraeIcon,
   VisualStudioCode,
   VisualStudioCodeInsiders,
@@ -77,6 +78,11 @@ export function editorIconOptions(platform: string): ReadonlyArray<EditorIconOpt
     {
       Icon: AntigravityIcon,
       value: "antigravity",
+      kind: "brand",
+    },
+    {
+      Icon: NovaIcon,
+      value: "nova",
       kind: "brand",
     },
     {

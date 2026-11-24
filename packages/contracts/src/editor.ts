@@ -1,7 +1,12 @@
 import * as Schema from "effect/Schema";
 import { PositiveInt, TrimmedNonEmptyString } from "./baseSchemas.ts";
 
-export const EditorLaunchStyle = Schema.Literals(["direct-path", "goto", "line-column"]);
+export const EditorLaunchStyle = Schema.Literals([
+  "direct-path",
+  "goto",
+  "line-column",
+  "line-flag",
+]);
 export type EditorLaunchStyle = typeof EditorLaunchStyle.Type;
 
 type EditorDefinition = {
@@ -61,6 +66,7 @@ export const EDITORS = [
     commands: ["antigravity-ide", "agy-ide"],
     launchStyle: "goto",
   },
+  { id: "nova", label: "Nova", commands: ["nova"], launchStyle: "line-flag" },
   {
     id: "idea",
     label: "IntelliJ IDEA",

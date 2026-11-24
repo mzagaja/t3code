@@ -252,7 +252,7 @@ it.effect.skipIf(windowsHost)(
       const path = yield* Path.Path;
       const binDir = yield* fileSystem.makeTempDirectoryScoped({ prefix: "t3-editors-" });
       const project = yield* fileSystem.makeTempDirectoryScoped({ prefix: "t3-project-" });
-      for (const name of ["code", "zeditor", "idea"]) {
+      for (const name of ["code", "zeditor", "idea", "nova"]) {
         const executable = path.join(binDir, name);
         yield* fileSystem.writeFileString(executable, "#!/bin/sh\n");
         yield* fileSystem.chmod(executable, 0o755);
@@ -294,6 +294,9 @@ it.effect.skipIf(windowsHost)(
           cwd: exactFile,
           position: { line: 5, column: 3 },
         });
+        yield* launcher.launchEditor({ editor: "nova", cwd: project });
+        yield* launcher.launchEditor({ editor: "nova", cwd: file });
+        yield* launcher.launchEditor({ editor: "nova", cwd: exactFile, position: { line: 5 } });
       }).pipe(
         Effect.provide(
           layerTest({
@@ -318,6 +321,9 @@ it.effect.skipIf(windowsHost)(
           [positionedFile],
           [`${project}/exponent:1e3`],
           ["--line", "5", "--column", "2", exactFile],
+          [project],
+          ["--line", "3:7", path.join(project, "file.ts")],
+          ["--line", "5", exactFile],
         ],
       );
     }).pipe(Effect.scoped, Effect.provide(NodeServices.layer)),

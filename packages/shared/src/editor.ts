@@ -116,12 +116,14 @@ export const resolveEditorCommand = Effect.fn("editor.resolveEditorCommand")(fun
       for (const bundle of bundles) {
         const contents = path.join(root, bundle, "Contents");
         candidates.push(
-          ...(jetbrains || editor.id === "zed"
-            ? [path.join(contents, "MacOS", editor.id === "zed" ? "cli" : command)]
-            : [
-                path.join(contents, "Resources/app/bin", command),
-                path.join(contents, "Resources/app/bin/code"),
-              ]),
+          ...(editor.id === "nova"
+            ? [path.join(contents, "SharedSupport/nova")]
+            : jetbrains || editor.id === "zed"
+              ? [path.join(contents, "MacOS", editor.id === "zed" ? "cli" : command)]
+              : [
+                  path.join(contents, "Resources/app/bin", command),
+                  path.join(contents, "Resources/app/bin/code"),
+                ]),
         );
       }
     }

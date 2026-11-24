@@ -189,6 +189,15 @@ function resolveCommandEditorArgs(
           path,
         ],
       });
+    case "line-flag":
+      return Option.match(parsedTarget, {
+        onNone: () => [target],
+        onSome: ({ path, line, column }) => [
+          "--line",
+          [line, ...Option.toArray(column)].join(":"),
+          path,
+        ],
+      });
   }
 }
 
